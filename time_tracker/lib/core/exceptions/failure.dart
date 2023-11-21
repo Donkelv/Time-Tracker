@@ -1,3 +1,5 @@
+import 'package:time_tracker/core/constants/string_const.dart';
+
 class Failure implements Exception {
   final String message;
   final int statusCode;
@@ -25,7 +27,7 @@ class RequestInternalException extends Failure {
 
 class ConnectionException extends Failure {
   ConnectionException(
-      {dynamic message = "Exception connecting to the internet"})
+      {dynamic message = StringConst.connectionException})
       : super(statusCode: 503, message: message);
 }
 
