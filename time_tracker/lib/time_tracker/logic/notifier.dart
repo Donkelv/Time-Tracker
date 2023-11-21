@@ -6,9 +6,7 @@ import 'package:time_tracker/time_tracker/logic/state.dart';
 class TimeTrackerNotifier extends StateNotifier<TimeTrackerState> {
   TimeTrackerNotifier({
     required TimeTrackerUseCase timeTrackerUseCase,
-    
-  })  : 
-        _timeTrackerUseCase = timeTrackerUseCase,
+  })  : _timeTrackerUseCase = timeTrackerUseCase,
         super(const TimeTrackerState.initial());
 
   final TimeTrackerUseCase _timeTrackerUseCase;

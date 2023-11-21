@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:time_tracker/local_persistence/data/repository/local_persistence.dart';
 import 'package:time_tracker/network_manager/data/network_manager.dart';
 import 'package:time_tracker/time_tracker/data/datasources/time_tracker.dart';
 import 'package:time_tracker/time_tracker/data/repository/time_tracker_repository.dart';
@@ -20,5 +21,6 @@ final timeTrackerBaseProvider = Provider<ITimeTrackerRepository>((ref) {
   return TimeTrackerRepository(
     dataSource: TimeTrackerDataSource(),
     networkManager: NetworkManager(),
+    localPersistence: LocalPersistence(),
   );
 });
