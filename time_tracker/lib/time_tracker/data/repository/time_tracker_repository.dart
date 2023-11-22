@@ -20,7 +20,9 @@ class TimeTrackerRepository implements ITimeTrackerRepository {
 
   @override
   Future<Either<Failure, TimeSpentList>> getTimeSpent() async {
-    if (await _localPersistence.getLocalData().then((value) => value.isEmpty)) {
+    final bool isEmpty =
+        await _localPersistence.getLocalData().then((value) => value.isEmpty);
+    if (isEmpty) {
       if (await _networkManager.isConnected) {
         try {
           final TimeSpentList timeSpentList = await _dataSource.getTimeSpent();

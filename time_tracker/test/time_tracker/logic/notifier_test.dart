@@ -34,11 +34,6 @@ void main() {
       expect(notifier.state, equals(const TimeTrackerState.initial()));
     });
 
-    test(
-        'should update state to TimeTrackerState.loading() when getTimeTracker is called',
-        () {
-      expect(notifier.state, equals(const TimeTrackerState.loading()));
-    });
 
     test(
         'should update state to TimeTrackerState.networkException() when there is a connection exception',

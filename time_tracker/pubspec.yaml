@@ -44,6 +44,7 @@ dependencies:
   hive: ^2.2.3
   path_provider: ^2.1.1
   hive_flutter: ^1.1.0
+  matcher: ^0.12.15
 
 dev_dependencies:
   flutter_test:
