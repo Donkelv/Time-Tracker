@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 TextStyle largestTextRubik(BuildContext context) {
   return GoogleFonts.rubik(
     fontSize: 32.0.sp,
-    color: Theme.of(context).brightness == Brightness.light
+    color: Theme.of(context).brightness == Brightness.dark
         ? Theme.of(context).textTheme.bodyLarge?.color
         : Colors.white, 
     fontWeight: FontWeight.w700,
@@ -16,7 +16,7 @@ TextStyle largestTextRubik(BuildContext context) {
 TextStyle largeTextRubik(BuildContext context) {
   return GoogleFonts.rubik(
     fontSize: 25.0.sp,
-     color: Theme.of(context).brightness == Brightness.light
+     color: Theme.of(context).brightness == Brightness.dark
         ? Theme.of(context).textTheme.bodyLarge?.color
         : Colors.white, 
     //fontWeight: FontWeight.w700,

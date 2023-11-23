@@ -4,6 +4,7 @@ class AppColorScheme {
   final Color primary;
   final Color blue; // Work
   final Color lightRed; // Play
+  final Color lightRed2;
   final Color softBlue; // Study
   final Color limeGreen; // Exercise
   final Color violet; // Social
@@ -18,6 +19,7 @@ class AppColorScheme {
     required this.primary,
     required this.blue,
     required this.lightRed,
+    required this.lightRed2,
     required this.softBlue,
     required this.limeGreen,
     required this.violet,
@@ -50,6 +52,7 @@ class AppTheme {
     primary: const HSLColor.fromAHSL(1.0, 246, 0.8, 0.6).toColor(),
     blue: const HSLColor.fromAHSL(1.0, 246, 0.8, 0.6).toColor(),
     lightRed: const HSLColor.fromAHSL(1.0, 15, 1.0, 0.7).toColor(),
+    lightRed2: const HSLColor.fromAHSL(1.0, 348, 1.0, 0.68).toColor(),
     softBlue: const HSLColor.fromAHSL(1.0, 195, 0.74, 0.62).toColor(),
     limeGreen: const HSLColor.fromAHSL(1.0, 145, 0.58, 0.55).toColor(),
     violet: const HSLColor.fromAHSL(1.0, 264, 0.64, 0.52).toColor(),
@@ -64,42 +67,34 @@ class AppTheme {
     primary: const HSLColor.fromAHSL(1.0, 246, 0.8, 0.6).toColor(),
     blue: const HSLColor.fromAHSL(1.0, 246, 0.8, 0.6).toColor(),
     lightRed: const HSLColor.fromAHSL(1.0, 15, 1.0, 0.7).toColor(),
+    lightRed2: const HSLColor.fromAHSL(1.0, 348, 1.0, 0.68).toColor(),
     softBlue: const HSLColor.fromAHSL(1.0, 195, 0.74, 0.62).toColor(),
     limeGreen: const HSLColor.fromAHSL(1.0, 145, 0.58, 0.55).toColor(),
     violet: const HSLColor.fromAHSL(1.0, 264, 0.64, 0.52).toColor(),
     softOrange: const HSLColor.fromAHSL(1.0, 43, 0.84, 0.65).toColor(),
-    veryDarkBlue: const HSLColor.fromAHSL(1.0, 226, 0.43, 0.1).toColor(),
-    darkBlue: const HSLColor.fromAHSL(1.0, 235, 0.46, 0.2).toColor(),
+    veryDarkBlue: Colors.white,//const HSLColor.fromAHSL(1.0, 236, 1.0, 0.87).toColor(),
+    darkBlue: const HSLColor.fromAHSL(1.0, 235, 0.46, 0.7).toColor(),
     desaturatedBlue: const HSLColor.fromAHSL(1.0, 235, 0.45, 0.61).toColor(),
-    paleBlue: const HSLColor.fromAHSL(1.0, 236, 1.0, 0.87).toColor(),
+    paleBlue: Colors.white,//const HSLColor.fromAHSL(1.0, 236, 1.0, 0.87).toColor(),
   );
 
   static Color getColorByName(String colorName, {bool isDarkMode = false}) {
     final AppColorScheme scheme = isDarkMode ? dark : light;
     debugPrint("The color name is $colorName");
     switch (colorName.toLowerCase()) {
-      case 'primary':
-        return scheme.primary;
       case 'play':
-        return scheme.blue;
+        return scheme.softBlue;
       case 'work':
         return scheme.lightRed;
       case 'study':
-        return scheme.lightRed;
+        return scheme.lightRed2;
       case 'exercise':
         return scheme.limeGreen;
       case 'social':
         return scheme.violet;
       case 'self care':
         return scheme.softOrange;
-      case 'verydarkblue':
-        return scheme.veryDarkBlue;
-      case 'darkblue':
-        return scheme.darkBlue;
-      case 'desaturatedblue':
-        return scheme.desaturatedBlue;
-      case 'paleblue':
-        return scheme.paleBlue;
+
       default:
         throw ArgumentError('Invalid color name: $colorName');
     }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:time_tracker/core/constants/color_scheme.dart';
 import 'package:time_tracker/core/constants/image_const.dart';
@@ -11,6 +12,7 @@ import 'package:time_tracker/time_tracker/data/models/time_tracker.dart';
 import 'package:time_tracker/time_tracker/logic/providers.dart';
 
 import '../../../core/constants/hive_const.dart';
+import '../../../core/constants/string_const.dart';
 import '../widgets/shimmer_widget.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -152,95 +154,114 @@ class _DataWidgetState extends ConsumerState<DataWidget>
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = ref.watch(themeProvider).getTheme();
+    final colorScheme =
+        currentTheme == ThemeData.light() ? AppTheme.light : AppTheme.dark;
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       top: true,
       bottom: false,
-      child: SizedBox(
-        height: size.height,
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: DefaultTabController(
-            length: 3,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25.0.w),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  100.0.verticalSpace,
-                  Container(
-                    height: 230.0.h,
-                    decoration: BoxDecoration(
-                      color: widget.colorScheme.darkBlue,
-                      borderRadius: BorderRadius.circular(15.0.r),
+      child: DefaultTabController(
+        length: 3,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 25.0.w),
+          child: SizedBox(
+            height: size.height,
+            child: Column(
+              children: [
+                20.0.verticalSpace,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        ref.watch(themeProvider.notifier).toggleTheme();
+                      },
+                      icon: currentTheme == ThemeData.light()
+                          ? Icon(
+                              Icons.dark_mode_outlined,
+                              color: colorScheme.blue,
+                            )
+                          : Icon(
+                              Icons.light_mode_outlined,
+                              color: colorScheme.paleBlue,
+                            ),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TopCardWidget(
-                            size: size, colorScheme: widget.colorScheme),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 25.0.w, vertical: 10.0.h),
-                          child: TabBar(
-                            controller: tabBarController,
-                            indicator: const BoxDecoration(),
-                            indicatorColor: Colors.transparent,
-                            labelStyle: mediumTextRubik(context)
-                                .copyWith(color: Colors.white),
-                            unselectedLabelStyle: mediumTextRubik(context)
-                                .copyWith(color: widget.colorScheme.paleBlue),
-                            tabs: const [
-                              Tab(
-                                text: "Daily",
-                              ),
-                              Tab(
-                                text: "Weekly",
-                              ),
-                              Tab(
-                                text: "Monthly",
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                  ],
+                ),
+                20.0.verticalSpace,
+                //100.0.verticalSpace,
+                Container(
+                  height: 230.0.h,
+                  decoration: BoxDecoration(
+                    color: widget.colorScheme.darkBlue,
+                    borderRadius: BorderRadius.circular(15.0.r),
                   ),
-                  30.0.verticalSpace,
-                  ValueListenableBuilder(
-                    valueListenable: categoryBox.listenable(),
-                    builder: ((context, value, child) {
-                      return SizedBox(
-                        height: size.height,
-                        child: TabBarView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TopCardWidget(
+                          size: size, colorScheme: widget.colorScheme),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 25.0.w, vertical: 10.0.h),
+                        child: TabBar(
                           controller: tabBarController,
-                          children: [
-                            TimeTrackerList(
-                              data: value.values
-                                  .where((element) => element.category == "daily")
-                                  .first,
+                          indicator: const BoxDecoration(),
+                          indicatorColor: Colors.transparent,
+                          labelStyle: mediumTextRubik(context)
+                              .copyWith(color: Colors.white),
+                          unselectedLabelStyle: mediumTextRubik(context)
+                              .copyWith(color: widget.colorScheme.paleBlue),
+                          tabs: const [
+                            Tab(
+                              text: "Daily",
                             ),
-                            TimeTrackerList(
-                              data: value.values
-                                  .where(
-                                      (element) => element.category == "weekly")
-                                  .first,
+                            Tab(
+                              text: "Weekly",
                             ),
-                            TimeTrackerList(
-                              data: value.values
-                                  .where(
-                                      (element) => element.category == "monthly")
-                                  .first,
+                            Tab(
+                              text: "Monthly",
                             ),
                           ],
                         ),
-                      );
-                    }),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                30.0.verticalSpace,
+                ValueListenableBuilder(
+                  valueListenable: categoryBox.listenable(),
+                  builder: ((context, value, child) {
+                    return Expanded(
+                      child: TabBarView(
+                        controller: tabBarController,
+                        children: [
+                          TimeTrackerList(
+                            data: value.values
+                                .where((element) => element.category == "daily")
+                                .first,
+                          ),
+                          TimeTrackerList(
+                            data: value.values
+                                .where(
+                                    (element) => element.category == "weekly")
+                                .first,
+                          ),
+                          TimeTrackerList(
+                            data: value.values
+                                .where(
+                                    (element) => element.category == "monthly")
+                                .first,
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+                ),
+               
+              ],
             ),
           ),
         ),
@@ -314,17 +335,22 @@ class TimeTrackerList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: data.data.length,
-      shrinkWrap: false,
-      physics: const NeverScrollableScrollPhysics(),
-      //reverse: true,
-      itemBuilder: (context, index) {
-        return CustomTimeTrackWidget(
-          data: data.data[index],
-          title: data.category,
-        );
-      },
+    return Scrollbar(
+      radius: Radius.circular(20.0.r),
+      
+      child: ListView.builder(
+        padding: EdgeInsets.only(bottom: 100.0.h),
+        itemCount: data.data.length,
+        shrinkWrap: true,
+        physics: const BouncingScrollPhysics(),
+        //reverse: true,
+        itemBuilder: (context, index) {
+          return CustomTimeTrackWidget(
+            data: data.data[index],
+            title: data.category,
+          );
+        },
+      ),
     );
   }
 }
@@ -332,7 +358,7 @@ class TimeTrackerList extends StatelessWidget {
 class CustomTimeTrackWidget extends ConsumerWidget {
   final Data data;
   final String title;
-  const CustomTimeTrackWidget( {
+  const CustomTimeTrackWidget({
     super.key,
     required this.data,
     required this.title,
@@ -349,8 +375,73 @@ class CustomTimeTrackWidget extends ConsumerWidget {
       width: size.width,
       height: 150.0.h,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15.0.r),
-          color: AppTheme.getColorByName(data.title, isDarkMode: currentTheme == ThemeData.dark()),),
+        borderRadius: BorderRadius.circular(15.0.r),
+        color: AppTheme.getColorByName(data.title,
+            isDarkMode: currentTheme == ThemeData.dark()),
+      ),
+      child: Stack(
+        children: [
+          Positioned(
+            top: -5.0.h,
+            right: 20.0.w,
+            child: SvgPicture.asset(
+              ImageConst().getTimeFrameIcon(data.title),
+              fit: BoxFit.scaleDown,
+            ),
+          ),
+          Positioned(
+            bottom: 0.0,
+            left: 0.0,
+            right: 0.0,
+            child: Container(
+              width: size.width,
+              height: 100.0.h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.0.r),
+                color: colorScheme.darkBlue,
+              ),
+              child: Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 20.0.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          data.title,
+                          style: normalTextRubik(context),
+                        ),
+                        10.0.verticalSpace,
+                        Text(
+                          "${data.timeSpent.current}hrs",
+                          style: largeTextRubik(context),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        SvgPicture.asset(ImageConst().ellipsisIcon),
+                        20.0.verticalSpace,
+                        Text(
+                          "${StringConst.getTimeFrame(title)} - ${data.timeSpent.previous}hrs",
+                          style: normalTextRubik(context)
+                              .copyWith(color: colorScheme.paleBlue),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
