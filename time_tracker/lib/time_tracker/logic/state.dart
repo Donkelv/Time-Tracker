@@ -9,5 +9,5 @@ class TimeTrackerState with _$TimeTrackerState {
   const factory TimeTrackerState.empty() = _Empty;
   const factory TimeTrackerState.networkException() = _NetworkException;
   const factory TimeTrackerState.error(String error) = _Error;
-  const factory TimeTrackerState.data({required TimeSpentList data}) = _Data;
+  const factory TimeTrackerState.data({required List<CategoryData> data}) = _Data;
 }

@@ -1,7 +1,7 @@
+// ignore: unused_import
 import 'dart:convert';
 // ignore: depend_on_referenced_packages
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:time_tracker/core/constants/api_const.dart';
 import 'package:time_tracker/core/exceptions/failure.dart';
 import 'package:time_tracker/core/manipulate_timespent.dart';
@@ -13,9 +13,8 @@ import '../../../core/constants/environment.dart';
 class TimeTrackerDataSource extends ITimeTrackerDataSource {
   Dio dio = Dio();
   @override
-  Future<TimeSpentList> getTimeSpent() async {
+  Future<List<CategoryData>> getTimeSpent() async {
     var url = FlavorConfig.instance!.values.baseUrl + ApiConst().timeTracking;
-    debugPrint("the url is $url");
     try {
       dio.interceptors.add(InterceptorsWrapper(
         onResponse: (Response response, ResponseInterceptorHandler handler) {
@@ -36,11 +35,11 @@ class TimeTrackerDataSource extends ITimeTrackerDataSource {
           },
         ),
       );
-      print(response);
-      TimeSpentList timeSpentList = TimeSpentList.fromJson(response.data);
-      print(timeSpentList);
+
       if (response.statusCode == 200) {
-        return TimeSpentList.fromJson(jsonDecode(response.data));
+        List<CategoryData> categoryDataList = parseResponse(response.data);
+        print(categoryDataList);
+        return categoryDataList;
       } else {
         throw Failure(
           message:
@@ -57,5 +56,13 @@ class TimeTrackerDataSource extends ITimeTrackerDataSource {
           message:
               "An error occurred, please check your internet connection and try again");
     }
+  }
+
+  List<CategoryData> parseResponse(dynamic responseData) {
+    List<CategoryData> categoryDataList = (responseData as List<dynamic>)
+        .map((data) => CategoryData.fromJson(data))
+        .toList();
+
+    return categoryDataList;
   }
 }

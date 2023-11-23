@@ -72,7 +72,7 @@ void main() {
       List<CategoryData> categories = [];
       when(() => mockTimeTrackerUseCase.call()).thenAnswer(
         (_) async => Right(
-          TimeSpentList(categories),
+         categories,
         ),
       );
 
@@ -97,7 +97,7 @@ void main() {
       ];
       when(() => mockTimeTrackerUseCase.call()).thenAnswer(
         (_) async => Right(
-          TimeSpentList(categories),
+          categories,
         ),
       );
 
@@ -107,7 +107,7 @@ void main() {
         notifier.state,
         equals(
           TimeTrackerState.data(
-            data: TimeSpentList(categories),
+            data: categories,
           ),
         ),
       );

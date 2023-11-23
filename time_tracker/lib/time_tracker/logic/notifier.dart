@@ -21,7 +21,7 @@ class TimeTrackerNotifier extends StateNotifier<TimeTrackerState> {
         state = TimeTrackerState.error(l.message);
       }
     }, (r) async {
-      if (r.categories.isEmpty) {
+      if (r.isEmpty) {
         state = const TimeTrackerState.empty();
       } else {
         state = TimeTrackerState.data(data: r);

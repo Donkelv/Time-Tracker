@@ -8,15 +8,16 @@ class TimeSpentAdapter extends TypeAdapter<TimeSpent> {
 
   @override
   TimeSpent read(BinaryReader reader) {
-    final current = reader.read();
-    final previous = reader.read();
-    return TimeSpent(current: current, previous: previous);
+    return TimeSpent(
+      current: reader.readInt(),
+      previous: reader.readInt(),
+    );
   }
 
   @override
   void write(BinaryWriter writer, TimeSpent obj) {
-    writer.write(obj.current);
-    writer.write(obj.previous);
+    writer.writeInt(obj.current);
+    writer.writeInt(obj.previous);
   }
 }
 
@@ -26,15 +27,15 @@ class DataAdapter extends TypeAdapter<Data> {
 
   @override
   Data read(BinaryReader reader) {
-    final title = reader.read();
-    final timeSpent = reader.read();
+    final title = reader.read() as String;
+    final timeSpent = reader.read() as TimeSpent;
     return Data(title: title, timeSpent: timeSpent);
   }
 
   @override
   void write(BinaryWriter writer, Data obj) {
-    writer.write(obj.title);
-    writer.write(obj.timeSpent);
+    writer.write<String>(obj.title);
+    writer.write<TimeSpent>(obj.timeSpent);
   }
 }
 
@@ -44,15 +45,15 @@ class CategoryDataAdapter extends TypeAdapter<CategoryData> {
 
   @override
   CategoryData read(BinaryReader reader) {
-    final category = reader.read();
-    final data = reader.read();
+    final category = reader.read() as String;
+    final List<Data> data = reader.read()?.cast<Data>() ?? [];
     return CategoryData(category: category, data: data);
   }
 
   @override
   void write(BinaryWriter writer, CategoryData obj) {
-    writer.write(obj.category);
-    writer.write(obj.data);
+    writer.write<String>(obj.category);
+    writer.write<List<Data>>(obj.data);
   }
 }
 
@@ -62,12 +63,13 @@ class TimeSpentListAdapter extends TypeAdapter<TimeSpentList> {
 
   @override
   TimeSpentList read(BinaryReader reader) {
-    final categories = reader.read();
-    return TimeSpentList(categories.cast<CategoryData>());
+    final categories =
+        reader.read()?.cast<CategoryData>() ?? [];
+    return TimeSpentList(categories);
   }
 
   @override
   void write(BinaryWriter writer, TimeSpentList obj) {
-    writer.write(obj.categories);
+    writer.write<List<CategoryData>>(obj.categories);
   }
 }

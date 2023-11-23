@@ -59,7 +59,7 @@ void main() {
       verifyZeroInteractions(mockNetworkManager);
       verify(() => mockLocalPersistence.getLocalData());
 
-      expect(result, equals(Right(TimeSpentList(categories))));
+      expect(result, equals(Right(categories)));
     });
 
     test('should return TimeSpentList from netowrk and store in local storage',
@@ -83,7 +83,7 @@ void main() {
       ];
 
       when(() => mockTimeTrackerDataSource.getTimeSpent()).thenAnswer(
-        (invocation) async => TimeSpentList(categories),
+        (invocation) async => categories,
       );
       try {
         final result = await timeTrackerRepository.getTimeSpent();
@@ -92,7 +92,7 @@ void main() {
           () => mockLocalPersistence.storeLocalData(data: categories),
         );
 
-        expect(result, equals(Right(TimeSpentList(categories))));
+        expect(result, equals(Right(categories)));
       } catch (e) {
         if (kDebugMode) {
           print("Exception thrown: $e");
@@ -121,7 +121,7 @@ void main() {
       verifyZeroInteractions(mockTimeTrackerDataSource);
       verifyZeroInteractions(mockLocalPersistence);
 
-      expect(result, isA<Left<Failure, TimeSpentList>>());
+      expect(result, isA<Left<Failure, List<CategoryData>>>());
     });
   });
 }

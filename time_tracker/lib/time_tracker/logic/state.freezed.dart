@@ -23,7 +23,7 @@ mixin _$TimeTrackerState {
     required TResult Function() empty,
     required TResult Function() networkException,
     required TResult Function(String error) error,
-    required TResult Function(TimeSpentList data) data,
+    required TResult Function(List<CategoryData> data) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -33,7 +33,7 @@ mixin _$TimeTrackerState {
     TResult? Function()? empty,
     TResult? Function()? networkException,
     TResult? Function(String error)? error,
-    TResult? Function(TimeSpentList data)? data,
+    TResult? Function(List<CategoryData> data)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,7 +43,7 @@ mixin _$TimeTrackerState {
     TResult Function()? empty,
     TResult Function()? networkException,
     TResult Function(String error)? error,
-    TResult Function(TimeSpentList data)? data,
+    TResult Function(List<CategoryData> data)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -140,7 +140,7 @@ class _$_Initial implements _Initial {
     required TResult Function() empty,
     required TResult Function() networkException,
     required TResult Function(String error) error,
-    required TResult Function(TimeSpentList data) data,
+    required TResult Function(List<CategoryData> data) data,
   }) {
     return initial();
   }
@@ -153,7 +153,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? empty,
     TResult? Function()? networkException,
     TResult? Function(String error)? error,
-    TResult? Function(TimeSpentList data)? data,
+    TResult? Function(List<CategoryData> data)? data,
   }) {
     return initial?.call();
   }
@@ -166,7 +166,7 @@ class _$_Initial implements _Initial {
     TResult Function()? empty,
     TResult Function()? networkException,
     TResult Function(String error)? error,
-    TResult Function(TimeSpentList data)? data,
+    TResult Function(List<CategoryData> data)? data,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -265,7 +265,7 @@ class _$_Loading implements _Loading {
     required TResult Function() empty,
     required TResult Function() networkException,
     required TResult Function(String error) error,
-    required TResult Function(TimeSpentList data) data,
+    required TResult Function(List<CategoryData> data) data,
   }) {
     return loading();
   }
@@ -278,7 +278,7 @@ class _$_Loading implements _Loading {
     TResult? Function()? empty,
     TResult? Function()? networkException,
     TResult? Function(String error)? error,
-    TResult? Function(TimeSpentList data)? data,
+    TResult? Function(List<CategoryData> data)? data,
   }) {
     return loading?.call();
   }
@@ -291,7 +291,7 @@ class _$_Loading implements _Loading {
     TResult Function()? empty,
     TResult Function()? networkException,
     TResult Function(String error)? error,
-    TResult Function(TimeSpentList data)? data,
+    TResult Function(List<CategoryData> data)? data,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -389,7 +389,7 @@ class _$_Empty implements _Empty {
     required TResult Function() empty,
     required TResult Function() networkException,
     required TResult Function(String error) error,
-    required TResult Function(TimeSpentList data) data,
+    required TResult Function(List<CategoryData> data) data,
   }) {
     return empty();
   }
@@ -402,7 +402,7 @@ class _$_Empty implements _Empty {
     TResult? Function()? empty,
     TResult? Function()? networkException,
     TResult? Function(String error)? error,
-    TResult? Function(TimeSpentList data)? data,
+    TResult? Function(List<CategoryData> data)? data,
   }) {
     return empty?.call();
   }
@@ -415,7 +415,7 @@ class _$_Empty implements _Empty {
     TResult Function()? empty,
     TResult Function()? networkException,
     TResult Function(String error)? error,
-    TResult Function(TimeSpentList data)? data,
+    TResult Function(List<CategoryData> data)? data,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -515,7 +515,7 @@ class _$_NetworkException implements _NetworkException {
     required TResult Function() empty,
     required TResult Function() networkException,
     required TResult Function(String error) error,
-    required TResult Function(TimeSpentList data) data,
+    required TResult Function(List<CategoryData> data) data,
   }) {
     return networkException();
   }
@@ -528,7 +528,7 @@ class _$_NetworkException implements _NetworkException {
     TResult? Function()? empty,
     TResult? Function()? networkException,
     TResult? Function(String error)? error,
-    TResult? Function(TimeSpentList data)? data,
+    TResult? Function(List<CategoryData> data)? data,
   }) {
     return networkException?.call();
   }
@@ -541,7 +541,7 @@ class _$_NetworkException implements _NetworkException {
     TResult Function()? empty,
     TResult Function()? networkException,
     TResult Function(String error)? error,
-    TResult Function(TimeSpentList data)? data,
+    TResult Function(List<CategoryData> data)? data,
     required TResult orElse(),
   }) {
     if (networkException != null) {
@@ -665,7 +665,7 @@ class _$_Error implements _Error {
     required TResult Function() empty,
     required TResult Function() networkException,
     required TResult Function(String error) error,
-    required TResult Function(TimeSpentList data) data,
+    required TResult Function(List<CategoryData> data) data,
   }) {
     return error(this.error);
   }
@@ -678,7 +678,7 @@ class _$_Error implements _Error {
     TResult? Function()? empty,
     TResult? Function()? networkException,
     TResult? Function(String error)? error,
-    TResult? Function(TimeSpentList data)? data,
+    TResult? Function(List<CategoryData> data)? data,
   }) {
     return error?.call(this.error);
   }
@@ -691,7 +691,7 @@ class _$_Error implements _Error {
     TResult Function()? empty,
     TResult Function()? networkException,
     TResult Function(String error)? error,
-    TResult Function(TimeSpentList data)? data,
+    TResult Function(List<CategoryData> data)? data,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -758,9 +758,7 @@ abstract class _$$_DataCopyWith<$Res> {
   factory _$$_DataCopyWith(_$_Data value, $Res Function(_$_Data) then) =
       __$$_DataCopyWithImpl<$Res>;
   @useResult
-  $Res call({TimeSpentList data});
-
-  $TimeSpentListCopyWith<$Res> get data;
+  $Res call({List<CategoryData> data});
 }
 
 /// @nodoc
@@ -777,28 +775,25 @@ class __$$_DataCopyWithImpl<$Res>
   }) {
     return _then(_$_Data(
       data: null == data
-          ? _value.data
+          ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as TimeSpentList,
+              as List<CategoryData>,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TimeSpentListCopyWith<$Res> get data {
-    return $TimeSpentListCopyWith<$Res>(_value.data, (value) {
-      return _then(_value.copyWith(data: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$_Data implements _Data {
-  const _$_Data({required this.data});
+  const _$_Data({required final List<CategoryData> data}) : _data = data;
 
+  final List<CategoryData> _data;
   @override
-  final TimeSpentList data;
+  List<CategoryData> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
 
   @override
   String toString() {
@@ -810,11 +805,12 @@ class _$_Data implements _Data {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Data &&
-            (identical(other.data, data) || other.data == data));
+            const DeepCollectionEquality().equals(other._data, _data));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
 
   @JsonKey(ignore: true)
   @override
@@ -830,7 +826,7 @@ class _$_Data implements _Data {
     required TResult Function() empty,
     required TResult Function() networkException,
     required TResult Function(String error) error,
-    required TResult Function(TimeSpentList data) data,
+    required TResult Function(List<CategoryData> data) data,
   }) {
     return data(this.data);
   }
@@ -843,7 +839,7 @@ class _$_Data implements _Data {
     TResult? Function()? empty,
     TResult? Function()? networkException,
     TResult? Function(String error)? error,
-    TResult? Function(TimeSpentList data)? data,
+    TResult? Function(List<CategoryData> data)? data,
   }) {
     return data?.call(this.data);
   }
@@ -856,7 +852,7 @@ class _$_Data implements _Data {
     TResult Function()? empty,
     TResult Function()? networkException,
     TResult Function(String error)? error,
-    TResult Function(TimeSpentList data)? data,
+    TResult Function(List<CategoryData> data)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
@@ -910,9 +906,9 @@ class _$_Data implements _Data {
 }
 
 abstract class _Data implements TimeTrackerState {
-  const factory _Data({required final TimeSpentList data}) = _$_Data;
+  const factory _Data({required final List<CategoryData> data}) = _$_Data;
 
-  TimeSpentList get data;
+  List<CategoryData> get data;
   @JsonKey(ignore: true)
   _$$_DataCopyWith<_$_Data> get copyWith => throw _privateConstructorUsedError;
 }

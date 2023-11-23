@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 TextStyle largestTextRubik(BuildContext context) {
   return GoogleFonts.rubik(
-    fontSize: 32.0,
+    fontSize: 32.0.sp,
     color: Theme.of(context).brightness == Brightness.light
         ? Theme.of(context).textTheme.bodyLarge?.color
         : Colors.white, 
@@ -15,11 +15,11 @@ TextStyle largestTextRubik(BuildContext context) {
 
 TextStyle largeTextRubik(BuildContext context) {
   return GoogleFonts.rubik(
-    fontSize: 25.0,
+    fontSize: 25.0.sp,
      color: Theme.of(context).brightness == Brightness.light
         ? Theme.of(context).textTheme.bodyLarge?.color
         : Colors.white, 
-    fontWeight: FontWeight.w700,
+    //fontWeight: FontWeight.w700,
   );
 }
 
@@ -29,14 +29,14 @@ TextStyle semiLargeTextRubik(BuildContext context) {
      color: Theme.of(context).brightness == Brightness.dark
         ? Theme.of(context).textTheme.bodyLarge?.color
         : Colors.white, 
-    fontWeight: FontWeight.w600,
+    //fontWeight: FontWeight.w600,
   );
 }
 
 TextStyle mediumTextRubik(BuildContext context) {
   return GoogleFonts.rubik(
-    fontSize: 16.0.sp,
-    color: Theme.of(context).brightness == Brightness.light
+    fontSize: 18.0.sp,
+    color: Theme.of(context).brightness == Brightness.dark
         ? Theme.of(context).textTheme.bodyLarge?.color
         : Colors.white, 
     //fontWeight: FontWeight.w500,
@@ -46,7 +46,7 @@ TextStyle mediumTextRubik(BuildContext context) {
 TextStyle normalTextRubik(BuildContext context) {
   return GoogleFonts.rubik(
     fontSize: 14.0.sp,
-    color: Theme.of(context).brightness == Brightness.light
+    color: Theme.of(context).brightness == Brightness.dark
         ? Theme.of(context).textTheme.bodyLarge?.color
         : Colors.white, 
     //fontWeight: FontWeight.w400,
@@ -56,7 +56,7 @@ TextStyle normalTextRubik(BuildContext context) {
 TextStyle smallTextRubik(BuildContext context) {
   return GoogleFonts.rubik(
     fontSize: 12.0.sp,
-     color: Theme.of(context).brightness == Brightness.light
+     color: Theme.of(context).brightness == Brightness.dark
         ? Theme.of(context).textTheme.bodyLarge?.color
         : Colors.white, 
     fontWeight: FontWeight.w300,
@@ -66,7 +66,7 @@ TextStyle smallTextRubik(BuildContext context) {
 TextStyle smallestTextRubik(BuildContext context) {
   return GoogleFonts.rubik(
     fontSize: 10.0.sp,
-     color: Theme.of(context).brightness == Brightness.light
+     color: Theme.of(context).brightness == Brightness.dark
         ? Theme.of(context).textTheme.bodyLarge?.color
         : Colors.white, 
     fontWeight: FontWeight.w200,

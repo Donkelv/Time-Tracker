@@ -9,7 +9,7 @@ class TimeTrackerUseCase {
 
   final ITimeTrackerRepository _repository;
 
-  Future<Either<Failure, TimeSpentList>> call() {
+  Future<Either<Failure, List<CategoryData>>> call() {
     return _repository.getTimeSpent();
   }
 }
