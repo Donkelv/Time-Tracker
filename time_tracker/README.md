@@ -1,16 +1,73 @@
-# time_tracker
+# Time Tracker
 
-A new Flutter project.
+This is a simple time tracker app with local storage persistence
 
-## Getting Started
+## Table of Contents
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Flavors](#flavors)
+- [Screenshots](#screenshots)
+- [Issues](#issues)
 
-This project is a starting point for a Flutter application.
+## Prerequisites
 
-A few resources to get you started if this is your first Flutter project:
+Before you begin, ensure you have met the following requirements:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- [Flutter](https://flutter.dev/docs/get-started/install) installed on your machine.
+- [FVM](https://fvm.app/docs/getting_started/installation) installed.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone http://aidhere-gmbh-fkqxjt@git.codesubmit.io/aidhere-gmbh/time-tracker-vfmolm
+   ```
+
+2. Ensure you have FVM installed:
+
+     ```bash
+   fvm install 3.10.1
+   fvm use 3.10.1
+    ```
+
+
+## Usage
+To run the project, use the following commands:
+
+### Development
+   ```bash
+   fvm flutter run -t lib/main_dev.dart
+   ```
+
+
+### Production
+   ```bash
+   fvm flutter run -t lib/main_prod.dart
+   ```
+
+## Flavors
+This project has two flavors: dev and prod. Flavors allow you to build and run the application with different configurations. To switch between flavors, use the appropriate commands mentioned in the [Usage](#usage) section.
+
+
+## Screenshots
+
+
+![Description of Screenshot 1](screenshots/1.png)
+*Home screen (light mode)*
+
+![Description of Screenshot 2](screenshots/2.png)
+*Enter time spent (light mode)*
+
+![Description of Screenshot 3](screenshots/3.png)
+*Home Screen (dark mode)*
+
+![Description of Screenshot 4](screenshots/4.png)
+*Enter time spent (dark mode)*
+
+
+## Issues
+If you have any questions or encounter issues, feel free to open an issue in the GitHub repository.
+
+Happy coding!
