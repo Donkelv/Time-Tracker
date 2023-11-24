@@ -71,21 +71,85 @@ class CustomTextField extends StatelessWidget {
           contentPadding:
               EdgeInsets.symmetric(vertical: 10.0.h, horizontal: 14.0.w),
           hintText: hintText,
-          hintStyle: mediumTextRubik(context).copyWith(color: colorScheme.primary),
+          hintStyle: mediumTextRubik(context).copyWith(color: colorScheme.neutral),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
             borderSide:
-                BorderSide(color: colorScheme.blue, width: 0.5),
+                BorderSide(color: colorScheme.neutral, width: 1),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
             borderSide:
-                BorderSide(color: colorScheme.blue, width: 0.5),
+                BorderSide(color: colorScheme.neutral, width:1),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
             borderSide:
-                BorderSide(color: colorScheme.blue, width: 0.5),
+                BorderSide(color: colorScheme.neutral, width: 1),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class CustomDropdownWidget extends StatelessWidget {
+  const CustomDropdownWidget(
+      {Key? key,
+      this.width,
+      required this.list,
+      required this.selectedValue,
+      required this.onChanged,
+      this.child,
+      this.hintText, required this.colorScheme})
+      : super(key: key);
+
+  final double? width;
+  final List<String> list;
+  final String? selectedValue;
+  final void Function(String?) onChanged;
+  final Widget? child;
+  final String? hintText;
+  final AppColorScheme colorScheme;
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Container(
+      width: width ?? size.width,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        border: Border.all(color: colorScheme.neutral, width: 1.0),
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 12.0.w),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButtonFormField(
+            decoration: const InputDecoration(
+              border: InputBorder.none,
+            ),
+            isExpanded: true,
+            hint: Text(
+              hintText ?? "Please Select",
+              style:
+                  mediumTextRubik(context).copyWith(color: colorScheme.neutral),
+            ),
+            icon: Icon(Icons.arrow_drop_down_circle_outlined, color: colorScheme.neutral,),
+            items: list
+                .map(
+                  (String value) => DropdownMenuItem(
+                    value: value,
+                    child: child ??
+                        Text(
+                          value,
+                          style: normalTextRubik(context).copyWith(color: colorScheme.neutral),
+                        ),
+                  ),
+                )
+                .toList(),
+            value: selectedValue,
+            onChanged: onChanged,
           ),
         ),
       ),

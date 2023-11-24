@@ -15,8 +15,9 @@ class AppColorScheme {
   final Color desaturatedBlue;
   final Color paleBlue;
   final Color blackColor10;
+  final Color neutral;
 
-  AppColorScheme( {
+  AppColorScheme({
     required this.primary,
     required this.blue,
     required this.lightRed,
@@ -30,6 +31,7 @@ class AppColorScheme {
     required this.desaturatedBlue,
     required this.paleBlue,
     required this.blackColor10,
+    required this.neutral,
   });
 
   ColorScheme toColorScheme() {
@@ -64,7 +66,7 @@ class AppTheme {
     desaturatedBlue: const HSLColor.fromAHSL(1.0, 235, 0.45, 0.61).toColor(),
     paleBlue: const HSLColor.fromAHSL(1.0, 236, 1.0, 0.87).toColor(),
     blackColor10: const HSLColor.fromAHSL(1.0, 226, 0.43, 0.05).toColor(),
-
+    neutral: Colors.white
   );
 
   static final light = AppColorScheme(
@@ -83,11 +85,12 @@ class AppTheme {
     paleBlue:
         Colors.white, //const HSLColor.fromAHSL(1.0, 236, 1.0, 0.87).toColor(),
     blackColor10: const Color(0xFFE7E8EA),
+    neutral: const HSLColor.fromAHSL(1.0, 235, 0.46, 0.2).toColor(),
   );
 
   static Color getColorByName(String colorName, {bool isDarkMode = false}) {
     final AppColorScheme scheme = isDarkMode ? dark : light;
-    debugPrint("The color name is $colorName");
+
     switch (colorName.toLowerCase()) {
       case 'play':
         return scheme.softBlue;

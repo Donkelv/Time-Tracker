@@ -1,7 +1,3 @@
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,7 +7,10 @@ import 'package:time_tracker/core/constants/image_const.dart';
 import 'package:time_tracker/core/constants/string_const.dart';
 import 'package:time_tracker/core/constants/text_theme.dart';
 import 'package:time_tracker/core/constants/theme.dart';
+import 'package:time_tracker/core/constants/time_spent_utils.dart';
 import 'package:time_tracker/time_tracker/data/models/time_tracker.dart';
+import 'package:time_tracker/time_tracker/presentation/widgets/add_time_spent_sheet.dart';
+import 'package:time_tracker/time_tracker/presentation/widgets/customer_stacked_sheet.dart';
 
 class TimeTrackerList extends StatelessWidget {
   final CategoryData data;
@@ -34,6 +33,7 @@ class TimeTrackerList extends StatelessWidget {
           return CustomTimeTrackWidget(
             data: data.data[index],
             title: data.category,
+            categoryData: data,
           );
         },
       ),
@@ -44,10 +44,12 @@ class TimeTrackerList extends StatelessWidget {
 class CustomTimeTrackWidget extends ConsumerWidget {
   final Data data;
   final String title;
+  final CategoryData categoryData;
   const CustomTimeTrackWidget({
     super.key,
     required this.data,
     required this.title,
+    required this.categoryData,
   });
 
   @override
@@ -102,9 +104,20 @@ class CustomTimeTrackWidget extends ConsumerWidget {
                           style: normalTextRubik(context),
                         ),
                         10.0.verticalSpace,
-                        Text(
-                          "${data.timeSpent.current}hrs",
-                          style: largeTextRubik(context),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              "${data.timeSpent.current}hrs",
+                              style: largeTextRubik(context),
+                            ),
+                            20.0.horizontalSpace,
+                            Text(
+                              TimeSpentUtils.calculateGrowthOrDrop(data.timeSpent.current, data.timeSpent.previous),
+                              style: normalTextRubik(context),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -112,7 +125,33 @@ class CustomTimeTrackWidget extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        SvgPicture.asset(ImageConst().ellipsisIcon),
+                        Material(
+                          type: MaterialType.transparency,
+                          child: Container(
+                            height: 20.0.h,
+                            width: 20.w,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.transparent,
+                            ),
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(10.0.r),
+                              onTap: () {
+                                customShowStackedBottomSheet(
+                                  child:  AddTimeSpent(
+                                    data: data,
+                                    title: title,
+                                    categoryData: categoryData,
+                                  ),
+                                  context: context,
+                                  colorScheme: colorScheme,
+                                  backColor: colorScheme.veryDarkBlue,
+                                );
+                              },
+                              child: SvgPicture.asset(ImageConst().ellipsisIcon),
+                            ),
+                          ),
+                        ),
                         20.0.verticalSpace,
                         Text(
                           "${StringConst.getTimeFrame(title)} - ${data.timeSpent.previous}hrs",

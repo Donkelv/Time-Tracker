@@ -10,6 +10,8 @@ class ImageConst {
   String studyIcon = StringExtensions("icon-study").svg;
   String workIcon = StringExtensions("icon-work").svg;
 
+  String profileIcon = StringExtensions("profile").png;
+
   String getTimeFrameIcon(String title) {
     switch (title.toLowerCase()) {
       case 'work':

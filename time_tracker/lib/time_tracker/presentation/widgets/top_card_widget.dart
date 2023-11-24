@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:time_tracker/core/constants/color_scheme.dart';
+import 'package:time_tracker/core/constants/image_const.dart';
 import 'package:time_tracker/core/constants/text_theme.dart';
 
 class TopCardWidget extends StatelessWidget {
@@ -34,6 +35,9 @@ class TopCardWidget extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.white, width: 2.0),
                 shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage(ImageConst().profileIcon),
+                ),
               ),
             ),
             30.0.horizontalSpace,
