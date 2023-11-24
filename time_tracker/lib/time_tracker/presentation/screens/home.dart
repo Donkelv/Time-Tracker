@@ -54,10 +54,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             return const ShimmerWidget();
           },
           empty: () {
-            return Container();
+            return const CustomErrorWidget(
+              error: "No Data available",
+            );
           },
           networkException: () {
-            return Container();
+            return const CustomErrorWidget(
+              error: "Please check your internet connection and try again",
+            );
           },
           error: (error) {
             return CustomErrorWidget(

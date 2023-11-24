@@ -90,7 +90,7 @@ class CustomTimeTrackWidget extends ConsumerWidget {
               ),
               child: Padding(
                 padding:
-                    EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 20.0.h),
+                    EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 15.0.h),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,

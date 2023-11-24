@@ -95,6 +95,7 @@ class _DataWidgetState extends ConsumerState<DataWidget>
                         padding: EdgeInsets.symmetric(
                             horizontal: 25.0.w, vertical: 10.0.h),
                         child: TabBar(
+                          padding: EdgeInsets.zero,
                           controller: tabBarController,
                           indicator: const BoxDecoration(),
                           indicatorColor: Colors.transparent,
@@ -124,6 +125,7 @@ class _DataWidgetState extends ConsumerState<DataWidget>
                   builder: ((context, value, child) {
                     return Expanded(
                       child: TabBarView(
+                        physics: const NeverScrollableScrollPhysics(),
                         controller: tabBarController,
                         children: [
                           TimeTrackerList(

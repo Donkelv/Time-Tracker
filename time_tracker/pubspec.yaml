@@ -53,6 +53,7 @@ dependencies:
   flutter_riverpod: ^2.4.8
   flutter_svg: ^2.0.9
   fluttertoast: ^8.2.4
+  mockito: ^5.4.2
 
 dev_dependencies:
   flutter_test:
