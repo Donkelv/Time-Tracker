@@ -14,8 +14,9 @@ class AppColorScheme {
   final Color darkBlue;
   final Color desaturatedBlue;
   final Color paleBlue;
+  final Color blackColor10;
 
-  AppColorScheme({
+  AppColorScheme( {
     required this.primary,
     required this.blue,
     required this.lightRed,
@@ -28,6 +29,7 @@ class AppColorScheme {
     required this.darkBlue,
     required this.desaturatedBlue,
     required this.paleBlue,
+    required this.blackColor10,
   });
 
   ColorScheme toColorScheme() {
@@ -61,6 +63,8 @@ class AppTheme {
     darkBlue: const HSLColor.fromAHSL(1.0, 235, 0.46, 0.2).toColor(),
     desaturatedBlue: const HSLColor.fromAHSL(1.0, 235, 0.45, 0.61).toColor(),
     paleBlue: const HSLColor.fromAHSL(1.0, 236, 1.0, 0.87).toColor(),
+    blackColor10: const HSLColor.fromAHSL(1.0, 226, 0.43, 0.05).toColor(),
+
   );
 
   static final light = AppColorScheme(
@@ -72,10 +76,13 @@ class AppTheme {
     limeGreen: const HSLColor.fromAHSL(1.0, 145, 0.58, 0.55).toColor(),
     violet: const HSLColor.fromAHSL(1.0, 264, 0.64, 0.52).toColor(),
     softOrange: const HSLColor.fromAHSL(1.0, 43, 0.84, 0.65).toColor(),
-    veryDarkBlue: Colors.white,//const HSLColor.fromAHSL(1.0, 236, 1.0, 0.87).toColor(),
+    veryDarkBlue:
+        Colors.white, //const HSLColor.fromAHSL(1.0, 236, 1.0, 0.87).toColor(),
     darkBlue: const HSLColor.fromAHSL(1.0, 235, 0.46, 0.7).toColor(),
     desaturatedBlue: const HSLColor.fromAHSL(1.0, 235, 0.45, 0.61).toColor(),
-    paleBlue: Colors.white,//const HSLColor.fromAHSL(1.0, 236, 1.0, 0.87).toColor(),
+    paleBlue:
+        Colors.white, //const HSLColor.fromAHSL(1.0, 236, 1.0, 0.87).toColor(),
+    blackColor10: const Color(0xFFE7E8EA),
   );
 
   static Color getColorByName(String colorName, {bool isDarkMode = false}) {
