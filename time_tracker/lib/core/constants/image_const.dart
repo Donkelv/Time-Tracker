@@ -2,6 +2,7 @@ import 'package:time_tracker/core/constants/string_extension.dart';
 
 class ImageConst {
   String errorGifWhite = StringExtensions("error_white").gif;
+  String errorGifDark = StringExtensions("error_dark").gif;
   String ellipsisIcon = StringExtensions("icon-ellipsis").svg;
   String exerciseIcon = StringExtensions("icon-exercise").svg;
   String playIcon = StringExtensions("icon-play").svg;

@@ -69,6 +69,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             );
           },
           data: (data) {
+            
             return DataWidget(
               colorScheme: colorScheme,
             );
