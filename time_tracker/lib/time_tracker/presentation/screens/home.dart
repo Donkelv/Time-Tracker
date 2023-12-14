@@ -24,6 +24,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     super.initState();
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
     final currentTheme = ref.watch(themeProvider).getTheme();
@@ -69,7 +71,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             );
           },
           data: (data) {
-            
             return DataWidget(
               colorScheme: colorScheme,
             );

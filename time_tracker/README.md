@@ -47,6 +47,14 @@ To run the project, use the following commands:
    fvm flutter run -t lib/main_prod.dart
    ```
 
+### Build Runner
+   ```bash
+   fvm flutter pub run build_runner build         
+   ```
+
+
+
+
 ## Flavors
 This project has two flavors: dev and prod. Flavors allow you to build and run the application with different configurations. To switch between flavors, use the appropriate commands mentioned in the [Usage](#usage) section.
 

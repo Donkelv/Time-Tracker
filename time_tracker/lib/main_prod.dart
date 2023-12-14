@@ -12,7 +12,7 @@ import 'time_tracker/data/models/time_tracker.dart';
 
 void main() async {
   FlavorConfig(
-    flavor: Flavor.dev,
+    flavor: Flavor.production,
     values: FlavorValues(baseUrl: ApiConst().prodBaseUrl),
   );
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +32,6 @@ void main() async {
     ProviderScope(
       overrides: [
         themeProvider.overrideWith((ref) => ThemeProvider(ref)),
-       
       ],
       child: const MyApp(),
     ),

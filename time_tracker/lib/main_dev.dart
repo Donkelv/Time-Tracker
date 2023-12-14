@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
@@ -21,13 +23,21 @@ void main() async {
   );
 
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Directory('android/app/src/main/assets').createSync(recursive: true);
+
+  // await File('android/app/src/main/assets/app_config.json')
+  //     .writeAsString('{"appId": "com.example.time_tracker_dev"}');
+  // await File('ios/Runner/Config/app_config.xcconfig')
+  //     .writeAsString('APP_ID=com.example.time_tracker_dev');
+
   final appDocumentDir = await getApplicationDocumentsDirectory();
   Hive.init(appDocumentDir.path);
   Hive.registerAdapter(TimeSpentAdapter());
   Hive.registerAdapter(CategoryDataAdapter());
   Hive.registerAdapter(DataAdapter());
   Hive.registerAdapter(TimeSpentListAdapter());
-  
+
   await Hive.openBox<CategoryData>(HiveConst.categoryDataBox);
   await Hive.openBox<Data>(HiveConst.dataBox);
   await Hive.openBox<TimeSpent>(HiveConst.timeSpentBox);

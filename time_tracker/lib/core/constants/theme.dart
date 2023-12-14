@@ -19,7 +19,7 @@ class ThemeProvider extends ChangeNotifier {
   late ThemeData _themeData;
 
   ThemeProvider(this.ref) {
-    _themeData = ThemeData.dark(); // Set the default theme as light
+    _themeData = ThemeData.dark(); // Set the default theme as dark
     _loadTheme();
   }
 

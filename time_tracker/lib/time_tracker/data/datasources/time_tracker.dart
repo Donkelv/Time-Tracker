@@ -2,6 +2,7 @@
 import 'dart:convert';
 // ignore: depend_on_referenced_packages
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:time_tracker/core/constants/api_const.dart';
 import 'package:time_tracker/core/exceptions/failure.dart';
 import 'package:time_tracker/core/manipulate_timespent.dart';
@@ -17,6 +18,7 @@ class TimeTrackerDataSource extends ITimeTrackerDataSource {
     var url = FlavorConfig.instance!.values.baseUrl + ApiConst().timeTracking;
     try {
       dio.interceptors.add(InterceptorsWrapper(
+       
         onResponse: (Response response, ResponseInterceptorHandler handler) {
           if (response.requestOptions.path == url) {
             List<Map<String, dynamic>> responseData =
@@ -38,7 +40,9 @@ class TimeTrackerDataSource extends ITimeTrackerDataSource {
 
       if (response.statusCode == 200) {
         List<CategoryData> categoryDataList = parseResponse(response.data);
-        print(categoryDataList);
+        if (kDebugMode) {
+          print(categoryDataList);
+        }
         return categoryDataList;
       } else {
         throw Failure(
@@ -48,7 +52,9 @@ class TimeTrackerDataSource extends ITimeTrackerDataSource {
         );
       }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
       if (e is Failure) {
         throw Failure(statusCode: e.statusCode, message: e.message);
       }

@@ -1,9 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.time_tracker">
-   <application
+    <application
         android:label="time_tracker"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <!-- <meta-data
+            android:name="com.example.time_tracker.appId"
+            android:value="@string/app_id" /> -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -30,5 +33,6 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        
     </application>
 </manifest>

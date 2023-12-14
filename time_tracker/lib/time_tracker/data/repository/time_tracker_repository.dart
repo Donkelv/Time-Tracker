@@ -44,7 +44,7 @@ class TimeTrackerRepository implements ITimeTrackerRepository {
       }
     } else {
       final List<CategoryData> categoryList =
-          await _localPersistence.getLocalData();//final TimeSpentList timeSpentList = TimeSpentList(categoryList);
+          await _localPersistence.getLocalData();
       return Right(categoryList);
     }
   }
